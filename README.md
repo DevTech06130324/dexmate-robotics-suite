@@ -22,6 +22,13 @@ A full-stack application for managing personal and group-owned robots with granu
 - Robot detail page for viewing info, managing settings, and administering permissions.
 - Group management UI for admins to invite members, adjust roles, create group-owned robots, and assign them to users.
 
+## Demo
+
+- **Frontend (Vercel):** [https://dexmate-robotics-suite.vercel.app](https://dexmate-robotics-suite.vercel.app)
+- **Backend API (Railway):** [https://dexmate-robotics-suite-production.up.railway.app/api](https://dexmate-robotics-suite-production.up.railway.app/api)
+
+Use the seeded credentials below to sign in and explore the end-to-end flows.
+
 ## Getting Started
 
 ### Prerequisites
@@ -89,8 +96,8 @@ A full-stack application for managing personal and group-owned robots with granu
 3. Member grants "usage" permission to another user in the group.
 
 ## Deployment Notes
-- Backend can be deployed to Railway or any Node-friendly host. Ensure `DATABASE_URL` and `JWT_SECRET` are configured.
-- Frontend can be deployed to Vercel or similar, pointing `REACT_APP_API_URL` to the backend public URL.
+- **Railway (backend):** The live service exposes the REST API at the URL above. Environment variables (`DATABASE_URL`, `JWT_SECRET`, optional `PORT`) are configured in Railway, and the database schema/seed script are applied via Railway’s SQL console + `npm run seed`. Cold starts may add a short delay (~5s) on the first request after inactivity.
+- **Vercel (frontend):** The React build is published at the URL above with `REACT_APP_API_URL` pointing to the Railway backend. Redeploys occur automatically from `main`.
 
 ## Trade-offs & Design Decisions
 - Kept business logic in route handlers for brevity; a service layer could improve testability for larger scopes.
