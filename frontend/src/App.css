@@ -432,7 +432,7 @@ textarea:focus {
   flex-direction: column;
   padding: 1.75rem;
   gap: 1.5rem;
-  background: transparent;
+  background: var(--color-bg);
 }
 
 .celestial-haze {
@@ -440,10 +440,10 @@ textarea:focus {
   inset: 0;
   pointer-events: none;
   mix-blend-mode: screen;
-  background: radial-gradient(circle at 30% 10%, rgba(112, 107, 255, 0.3), transparent 55%),
-    radial-gradient(circle at 75% 15%, rgba(34, 211, 238, 0.25), transparent 60%),
-    radial-gradient(circle at 50% 80%, rgba(251, 191, 36, 0.25), transparent 65%);
-  filter: blur(60px);
+  background: radial-gradient(circle at 35% 12%, rgba(91, 75, 255, 0.18), transparent 55%),
+    radial-gradient(circle at 70% 8%, rgba(14, 165, 233, 0.18), transparent 60%),
+    radial-gradient(circle at 60% 85%, rgba(245, 158, 11, 0.16), transparent 65%);
+  filter: blur(80px);
   z-index: -1;
 }
 
@@ -458,8 +458,8 @@ textarea:focus {
   padding: 1rem 1.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-subtle);
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.65));
-  backdrop-filter: blur(22px) saturate(140%);
+  background: var(--surface-primary);
+  backdrop-filter: blur(18px) saturate(160%);
   box-shadow: var(--shadow-soft);
 }
 
@@ -507,7 +507,7 @@ textarea:focus {
   position: absolute;
   inset: 0;
   border-radius: inherit;
-  background: linear-gradient(135deg, rgba(112, 107, 255, 0.35), rgba(34, 211, 238, 0.3));
+  background: radial-gradient(135deg, rgba(112, 107, 255, 0.35), rgba(34, 211, 238, 0.3));
   box-shadow: 0 12px 22px rgba(112, 107, 255, 0.25);
   filter: brightness(1.2);
   z-index: -1;
@@ -526,8 +526,8 @@ textarea:focus {
   gap: 0.5rem;
   padding: 0.35rem 0.85rem;
   border-radius: 999px;
-  background: rgba(148, 163, 184, 0.15);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--surface-secondary);
+  border: 1px solid rgba(148, 163, 184, 0.3);
   color: var(--text-primary);
   font-weight: 500;
 }
@@ -575,9 +575,9 @@ textarea:focus {
   content: "";
   position: absolute;
   inset: 12% -10% -45% 40%;
-  background: radial-gradient(circle, rgba(112, 107, 255, 0.35), transparent 65%);
-  filter: blur(40px);
-  opacity: 0.8;
+  background: radial-gradient(circle, rgba(91, 75, 255, 0.2), transparent 65%);
+  filter: blur(55px);
+  opacity: 0.9;
   pointer-events: none;
 }
 
@@ -615,8 +615,8 @@ textarea:focus {
   padding: 1rem;
   border-radius: var(--radius-md);
   border: 1px solid rgba(148, 163, 184, 0.25);
-  background: rgba(15, 23, 42, 0.55);
-  box-shadow: inset 0 0 18px rgba(112, 107, 255, 0.08);
+  background: var(--surface-secondary);
+  box-shadow: inset 0 0 18px rgba(91, 75, 255, 0.08);
   display: flex;
   flex-direction: column;
   gap: 0.45rem;
@@ -646,8 +646,8 @@ textarea:focus {
   gap: 0.45rem;
   padding: 0.6rem 1.2rem;
   border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  background: transparent;
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--surface-ghost);
   color: var(--text-secondary);
   text-decoration: none;
   transition: transform 180ms ease, color 180ms ease, border-color 180ms ease;
@@ -655,7 +655,7 @@ textarea:focus {
 
 .btn-ghost:hover {
   transform: translateY(-2px);
-  border-color: rgba(112, 107, 255, 0.45);
+  border-color: rgba(91, 75, 255, 0.45);
   color: var(--text-primary);
 }
 
@@ -804,9 +804,8 @@ textarea:focus {
   position: relative;
   padding: 1.5rem;
   border-radius: var(--radius-lg);
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  background: linear-gradient(160deg, rgba(17, 24, 39, 0.85), rgba(30, 41, 59, 0.75));
-  backdrop-filter: blur(26px);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  background: var(--surface-card);
   box-shadow: var(--shadow-soft);
   display: flex;
   flex-direction: column;
@@ -819,7 +818,7 @@ textarea:focus {
   content: "";
   position: absolute;
   inset: -40% -40% 60% 60%;
-  background: radial-gradient(circle, rgba(112, 107, 255, 0.45), transparent 65%);
+  background: radial-gradient(circle, rgba(91, 75, 255, 0.25), transparent 65%);
   opacity: 0;
   transition: opacity 220ms ease;
 }
@@ -860,33 +859,34 @@ textarea:focus {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: var(--surface-ghost);
+  color: var(--text-secondary);
 }
 
 .badge-personal {
-  background: rgba(112, 107, 255, 0.18);
-  color: #c7d2fe;
+  background: rgba(91, 75, 255, 0.15);
+  color: #312e81;
 }
 
 .badge-group {
-  background: rgba(34, 211, 238, 0.18);
-  color: #a5f3fc;
+  background: rgba(14, 165, 233, 0.15);
+  color: #075985;
 }
 
 .badge-permission-owner {
-  background: rgba(251, 191, 36, 0.2);
-  color: #fde68a;
+  background: rgba(245, 158, 11, 0.15);
+  color: #92400e;
 }
 
 .badge-permission-admin {
-  background: rgba(251, 146, 60, 0.2);
-  color: #fed7aa;
+  background: rgba(217, 70, 239, 0.15);
+  color: #86198f;
 }
 
 .badge-permission-usage {
-  background: rgba(52, 211, 153, 0.2);
-  color: #bbf7d0;
+  background: rgba(16, 185, 129, 0.15);
+  color: #065f46;
 }
 
 .btn-primary,
@@ -904,8 +904,8 @@ textarea:focus {
 
 .btn-primary {
   background: linear-gradient(120deg, var(--accent-violet), var(--accent-cyan));
-  color: #0b1120;
-  box-shadow: 0 16px 32px rgba(112, 107, 255, 0.4);
+  color: #ffffff;
+  box-shadow: 0 16px 32px rgba(91, 75, 255, 0.3);
 }
 
 .btn-primary::after {
@@ -922,9 +922,9 @@ textarea:focus {
 }
 
 .btn-secondary {
-  background: rgba(148, 163, 184, 0.15);
+  background: var(--surface-secondary);
   color: var(--text-primary);
-  border: 1px solid rgba(148, 163, 184, 0.25);
+  border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
 .btn-primary:hover:not(:disabled),
@@ -940,18 +940,18 @@ textarea:focus {
 .alert {
   border-radius: var(--radius-md);
   padding: 0.85rem 1.1rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  background: var(--surface-secondary);
 }
 
 .alert-success {
-  background: rgba(52, 211, 153, 0.18);
-  color: #bbf7d0;
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
 }
 
 .alert-error {
-  background: rgba(251, 146, 60, 0.18);
-  color: #fed7aa;
+  background: rgba(245, 158, 11, 0.12);
+  color: #92400e;
 }
 
 .auth-page {
@@ -959,15 +959,15 @@ textarea:focus {
 }
 
 .auth-card {
-  background: linear-gradient(160deg, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.7));
-  border: 1px solid rgba(148, 163, 184, 0.2);
-  backdrop-filter: blur(32px);
+  background: var(--surface-card);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: var(--shadow-soft);
 }
 
 input,
 select,
 textarea {
-  background: rgba(15, 23, 42, 0.65);
+  background: #ffffff;
   border: 1px solid rgba(148, 163, 184, 0.35);
   color: var(--text-primary);
   transition: border-color 160ms ease, box-shadow 160ms ease;
@@ -977,28 +977,27 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: rgba(112, 107, 255, 0.6);
-  box-shadow: 0 0 0 4px rgba(112, 107, 255, 0.25);
+  border-color: rgba(91, 75, 255, 0.45);
+  box-shadow: 0 0 0 4px rgba(91, 75, 255, 0.2);
 }
 
 .permission-row,
 .member-row,
 .group-item {
-  background: rgba(148, 163, 184, 0.08);
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  backdrop-filter: blur(18px);
+  background: var(--surface-secondary);
+  border: 1px solid rgba(148, 163, 184, 0.25);
 }
 
 .group-item.active,
 .group-item:hover {
-  border-color: rgba(112, 107, 255, 0.35);
-  box-shadow: 0 12px 24px rgba(112, 107, 255, 0.2);
+  border-color: rgba(91, 75, 255, 0.45);
+  box-shadow: 0 12px 24px rgba(91, 75, 255, 0.18);
 }
 
 .skeleton-line {
   height: 12px;
   border-radius: 999px;
-  background: linear-gradient(90deg, rgba(148, 163, 184, 0.15), rgba(100, 116, 139, 0.25), rgba(148, 163, 184, 0.15));
+  background: linear-gradient(90deg, rgba(226, 232, 240, 0.8), rgba(203, 213, 225, 0.9), rgba(226, 232, 240, 0.8));
   background-size: 200% 100%;
   animation: shimmer 1.6s infinite;
 }
