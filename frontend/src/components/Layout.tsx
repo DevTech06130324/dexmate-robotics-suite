@@ -36,13 +36,13 @@ const Layout: React.FC = () => {
           {navItems.map((item, index) => {
             const Icon = item.icon;
             return (
-              <NavLink 
-                key={item.to} 
-                to={item.to} 
+              <NavLink
+                key={item.to}
+                to={item.to}
                 className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
               >
                 <motion.div
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
@@ -50,13 +50,6 @@ const Layout: React.FC = () => {
                   <Icon size={18} />
                   <span>{item.label}</span>
                 </motion.div>
-                {location.pathname.startsWith(item.to) && (
-                  <motion.span
-                    layoutId="navHighlight"
-                    className="nav-highlight"
-                    transition={{ type: 'spring', stiffness: 400, damping: 35 }}
-                  />
-                )}
               </NavLink>
             );
           })}
@@ -67,24 +60,18 @@ const Layout: React.FC = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <motion.span 
-            className="user-chip"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <motion.span className="user-chip">
             <span className="user-dot" />
             {user?.name}
           </motion.span>
-          <motion.button 
-            type="button" 
-            className="btn-secondary" 
+          <button
+            type="button"
+            className="btn-secondary"
             onClick={logout}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
           >
             <LogOut size={16} style={{ marginRight: '0.5rem' }} />
             Log out
-          </motion.button>
+          </button>
         </motion.div>
       </motion.header>
       <AnimatePresence mode="wait">

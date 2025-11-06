@@ -182,12 +182,10 @@ const RegisterPage: React.FC = () => {
             </div>
           </div>
 
-          <motion.button 
+          <button 
             type="submit" 
             className="btn-primary" 
             disabled={loading}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
             style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
           >
             {loading ? 'Creating account…' : (
@@ -196,7 +194,7 @@ const RegisterPage: React.FC = () => {
                 <Check size={18} />
               </>
             )}
-          </motion.button>
+          </button>
         </motion.form>
 
         <motion.p 
