@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
 import { useAuthContext } from '../contexts/AuthContext';
 
 const LoginPage: React.FC = () => {
@@ -27,43 +29,127 @@ const LoginPage: React.FC = () => {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        <h1>Sign in</h1>
-        <p className="auth-subtitle">Manage your robots across personal and group contexts.</p>
+      <motion.div 
+        className="auth-card"
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}
+        >
+          <Sparkles size={32} style={{ color: 'var(--accent-primary)' }} />
+          <h1>Sign in</h1>
+        </motion.div>
+        
+        <motion.p 
+          className="auth-subtitle"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Manage your robots across personal and group contexts.
+        </motion.p>
 
-        {error && <div className="alert alert-error">{error}</div>}
+        {error && (
+          <motion.div 
+            className="alert alert-error"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            {error}
+          </motion.div>
+        )}
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            required
-            autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="auth-form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="email">Email</label>
+            <div style={{ position: 'relative' }}>
+              <Mail 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            required
-            autoComplete="current-password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="password">Password</label>
+            <div style={{ position: 'relative' }}>
+              <Lock 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="password"
+                type="password"
+                required
+                autoComplete="current-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Signing in…' : 'Sign in'}
-          </button>
-        </form>
+          <motion.button 
+            type="submit" 
+            className="btn-primary" 
+            disabled={loading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+          >
+            {loading ? 'Signing in…' : (
+              <>
+                Sign in
+                <ArrowRight size={18} />
+              </>
+            )}
+          </motion.button>
+        </motion.form>
 
-        <p className="auth-footer">
+        <motion.p 
+          className="auth-footer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
           Need an account?{' '}
           <Link to="/register">Create one</Link>
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </div>
   );
 };

@@ -1,34 +1,56 @@
 :root {
   color-scheme: light;
-  --color-bg: radial-gradient(circle at 20% 20%, rgba(112, 107, 255, 0.12), transparent 55%),
-    radial-gradient(circle at 80% 0%, rgba(34, 211, 238, 0.12), transparent 50%),
-    #f8fafc;
-  --surface-primary: rgba(255, 255, 255, 0.95);
-  --surface-secondary: rgba(255, 255, 255, 0.85);
+  
+  /* Light, airy background with subtle gradients */
+  --color-bg: linear-gradient(135deg, #fdfcfb 0%, #f6f9fc 100%);
+  
+  /* Surface colors with glassmorphism */
+  --surface-primary: rgba(255, 255, 255, 0.98);
+  --surface-secondary: rgba(255, 255, 255, 0.92);
   --surface-card: #ffffff;
-  --surface-ghost: rgba(15, 23, 42, 0.04);
+  --surface-glass: rgba(255, 255, 255, 0.7);
+  --surface-ghost: rgba(148, 163, 184, 0.08);
 
-  --border-subtle: rgba(148, 163, 184, 0.35);
-  --border-strong: rgba(100, 116, 139, 0.6);
+  /* Borders with subtle elegance */
+  --border-subtle: rgba(203, 213, 225, 0.5);
+  --border-strong: rgba(148, 163, 184, 0.7);
+  --border-glow: rgba(139, 92, 246, 0.3);
 
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  /* High contrast text colors */
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #94a3b8;
+  --text-light: #cbd5e1;
 
-  --accent-violet: #5b4bff;
-  --accent-cyan: #0ea5e9;
-  --accent-amber: #f59e0b;
-  --accent-emerald: #10b981;
+  /* Vibrant accent colors */
+  --accent-primary: #8b5cf6;
+  --accent-secondary: #06b6d4;
+  --accent-success: #10b981;
+  --accent-warning: #f59e0b;
+  --accent-danger: #ef4444;
+  --accent-pink: #ec4899;
 
-  --radius-lg: 24px;
-  --radius-md: 16px;
-  --radius-sm: 12px;
+  /* Gradient combinations */
+  --gradient-primary: linear-gradient(135deg, #8b5cf6 0%, #06b6d4 100%);
+  --gradient-secondary: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+  --gradient-success: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+  --gradient-warm: linear-gradient(135deg, #f59e0b 0%, #ec4899 100%);
 
-  --shadow-soft: 0 24px 60px rgba(15, 23, 42, 0.08);
-  --shadow-float: 0 18px 40px rgba(91, 75, 255, 0.18);
+  /* Border radius */
+  --radius-xl: 28px;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
 
-  --font-display: "Space Grotesk", "Inter", system-ui, -apple-system, sans-serif;
-  --font-sans: "Inter", "Space Grotesk", system-ui, -apple-system, sans-serif;
+  /* Shadows with depth */
+  --shadow-soft: 0 8px 32px rgba(148, 163, 184, 0.12);
+  --shadow-medium: 0 16px 48px rgba(139, 92, 246, 0.15);
+  --shadow-float: 0 24px 64px rgba(139, 92, 246, 0.25);
+  --shadow-glow: 0 0 48px rgba(139, 92, 246, 0.4);
+
+  /* Typography */
+  --font-display: "Space Grotesk Variable", "Space Grotesk", system-ui, -apple-system, sans-serif;
+  --font-sans: "Inter Variable", "Inter", system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -47,15 +69,53 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Animated gradient orbs in the background */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: linear-gradient(160deg, rgba(112, 107, 255, 0.16), transparent 60%),
-    linear-gradient(25deg, rgba(14, 165, 233, 0.14), transparent 50%),
-    radial-gradient(circle at 85% 120%, rgba(245, 158, 11, 0.12), transparent 40%);
+  background: 
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.15), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(6, 182, 212, 0.12), transparent 50%),
+    radial-gradient(circle at 50% 85%, rgba(236, 72, 153, 0.08), transparent 40%);
   pointer-events: none;
   z-index: -1;
+  animation: gradientShift 20s ease-in-out infinite;
+}
+
+/* Floating particles effect */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 25% 45%, rgba(139, 92, 246, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 60%, rgba(6, 182, 212, 0.08) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.6;
+  animation: floatParticles 60s linear infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@keyframes floatParticles {
+  0% {
+    background-position: 0 0, 40px 40px;
+  }
+  100% {
+    background-position: 80px 80px, 120px 120px;
+  }
 }
 
 #root {

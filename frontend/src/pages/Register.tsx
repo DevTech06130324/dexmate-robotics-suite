@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { User, Mail, Lock, Check, Sparkles } from 'lucide-react';
 import { useAuthContext } from '../contexts/AuthContext';
 
 const RegisterPage: React.FC = () => {
@@ -34,62 +36,178 @@ const RegisterPage: React.FC = () => {
 
   return (
     <div className="auth-page">
-      <div className="auth-card">
-        <h1>Create an account</h1>
-        <p className="auth-subtitle">Collaborate with teams and manage robots efficiently.</p>
+      <motion.div 
+        className="auth-card"
+        initial={{ opacity: 0, scale: 0.9, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '0.5rem' }}
+        >
+          <Sparkles size={32} style={{ color: 'var(--accent-primary)' }} />
+          <h1>Create an account</h1>
+        </motion.div>
+        
+        <motion.p 
+          className="auth-subtitle"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+        >
+          Collaborate with teams and manage robots efficiently.
+        </motion.p>
 
-        {error && <div className="alert alert-error">{error}</div>}
+        {error && (
+          <motion.div 
+            className="alert alert-error"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+          >
+            {error}
+          </motion.div>
+        )}
 
-        <form onSubmit={handleSubmit} className="auth-form">
-          <label htmlFor="name">Full name</label>
-          <input
-            id="name"
-            type="text"
-            required
-            autoComplete="name"
-            value={name}
-            onChange={(event) => setName(event.target.value)}
-          />
+        <motion.form 
+          onSubmit={handleSubmit} 
+          className="auth-form"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="name">Full name</label>
+            <div style={{ position: 'relative' }}>
+              <User 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="name"
+                type="text"
+                required
+                autoComplete="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            type="email"
-            required
-            autoComplete="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-          />
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="email">Email</label>
+            <div style={{ position: 'relative' }}>
+              <Mail 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="email"
+                type="email"
+                required
+                autoComplete="email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            required
-            autoComplete="new-password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-          />
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="password">Password</label>
+            <div style={{ position: 'relative' }}>
+              <Lock 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="password"
+                type="password"
+                required
+                autoComplete="new-password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <label htmlFor="confirmPassword">Confirm password</label>
-          <input
-            id="confirmPassword"
-            type="password"
-            required
-            autoComplete="new-password"
-            value={confirmPassword}
-            onChange={(event) => setConfirmPassword(event.target.value)}
-          />
+          <div style={{ position: 'relative' }}>
+            <label htmlFor="confirmPassword">Confirm password</label>
+            <div style={{ position: 'relative' }}>
+              <Check 
+                size={18} 
+                style={{ 
+                  position: 'absolute', 
+                  left: '1rem', 
+                  top: '50%', 
+                  transform: 'translateY(-50%)',
+                  color: 'var(--text-muted)',
+                  pointerEvents: 'none'
+                }} 
+              />
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                autoComplete="new-password"
+                value={confirmPassword}
+                onChange={(event) => setConfirmPassword(event.target.value)}
+                style={{ paddingLeft: '3rem' }}
+              />
+            </div>
+          </div>
 
-          <button type="submit" className="btn-primary" disabled={loading}>
-            {loading ? 'Creating account…' : 'Create account'}
-          </button>
-        </form>
+          <motion.button 
+            type="submit" 
+            className="btn-primary" 
+            disabled={loading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem' }}
+          >
+            {loading ? 'Creating account…' : (
+              <>
+                Create account
+                <Check size={18} />
+              </>
+            )}
+          </motion.button>
+        </motion.form>
 
-        <p className="auth-footer">
+        <motion.p 
+          className="auth-footer"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
           Already have an account? <Link to="/login">Sign in</Link>
-        </p>
-      </div>
+        </motion.p>
+      </motion.div>
     </div>
   );
 };

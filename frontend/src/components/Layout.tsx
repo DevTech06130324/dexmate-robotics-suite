@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, NavLink, Outlet, useLocation } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { LayoutDashboard, Users, LogOut, Sparkles } from 'lucide-react';
 import { useAuthContext } from '../contexts/AuthContext';
 
 const Layout: React.FC = () => {
@@ -8,8 +9,8 @@ const Layout: React.FC = () => {
   const location = useLocation();
 
   const navItems = [
-    { to: '/dashboard', label: 'Dashboard' },
-    { to: '/groups', label: 'Groups' },
+    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
+    { to: '/groups', label: 'Groups', icon: Users },
   ];
 
   return (
@@ -17,45 +18,87 @@ const Layout: React.FC = () => {
       <div className="celestial-haze" aria-hidden />
       <motion.header
         className="app-header"
-        initial={{ opacity: 0, y: -24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        initial={{ opacity: 0, y: -32, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
       >
         <Link to="/dashboard" className="brand">
-          RoboManage
+          <motion.div
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Sparkles size={24} style={{ display: 'inline' }} />
+            RoboManage
+          </motion.div>
         </Link>
         <nav className="main-nav">
-          {navItems.map((item) => (
-            <NavLink key={item.to} to={item.to} className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>
-              <span>{item.label}</span>
-              {location.pathname.startsWith(item.to) && (
-                <motion.span
-                  layoutId="navHighlight"
-                  className="nav-highlight"
-                  transition={{ type: 'spring', stiffness: 380, damping: 30 }}
-                />
-              )}
-            </NavLink>
-          ))}
+          {navItems.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <NavLink 
+                key={item.to} 
+                to={item.to} 
+                className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}
+              >
+                <motion.div
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', position: 'relative', zIndex: 1 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1 }}
+                >
+                  <Icon size={18} />
+                  <span>{item.label}</span>
+                </motion.div>
+                {location.pathname.startsWith(item.to) && (
+                  <motion.span
+                    layoutId="navHighlight"
+                    className="nav-highlight"
+                    transition={{ type: 'spring', stiffness: 400, damping: 35 }}
+                  />
+                )}
+              </NavLink>
+            );
+          })}
         </nav>
-        <div className="header-actions">
-          <span className="user-chip">
+        <motion.div 
+          className="header-actions"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <motion.span 
+            className="user-chip"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             <span className="user-dot" />
             {user?.name}
-          </span>
-          <button type="button" className="btn-secondary" onClick={logout}>
+          </motion.span>
+          <motion.button 
+            type="button" 
+            className="btn-secondary" 
+            onClick={logout}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <LogOut size={16} style={{ marginRight: '0.5rem' }} />
             Log out
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       </motion.header>
-      <motion.main
-        className="app-main"
-        initial={{ opacity: 0, y: 16 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
-        <Outlet />
-      </motion.main>
+      <AnimatePresence mode="wait">
+        <motion.main
+          key={location.pathname}
+          className="app-main"
+          initial={{ opacity: 0, y: 24, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -24, scale: 0.98 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Outlet />
+        </motion.main>
+      </AnimatePresence>
     </div>
   );
 };
