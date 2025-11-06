@@ -74,6 +74,22 @@ Use the seeded credentials below to sign in and explore the end-to-end flows.
 - **Admin User**: `admin@example.com` / `AdminPass123!`
 - **Regular User**: `member@example.com` / `MemberPass123!`
 
+## Brief Write-up
+
+### Technology Choices
+- **Node.js + Express (Backend):** Chosen for its lightweight request handling, mature ecosystem, and straightforward middlewares for auth, validation, and logging. TypeScript provides type safety and clearer contracts for route handlers and DB access.
+- **PostgreSQL:** Offers strong relational integrity for group/permission relationships while JSONB columns let us store per-user robot settings without additional migrations as keys evolve.
+- **React + TypeScript (Frontend):** Enables a responsive SPA with clear component contracts. React Router supports the multi-page flows (auth, dashboard, robot detail, groups) with protected routes bound to auth context.
+- **JWT Authentication:** Simplifies stateless auth across backend/frontend deployments, enabling the frontend to persist tokens and refresh user context without sticky sessions.
+- **Railway + Vercel Deployments:** Provide quick managed hosting with CI-style deploys triggered from `main`, minimizing ops overhead for the demo requirement.
+
+### Trade-offs & Design Decisions
+- **Route-centric business logic:** Controllers house most application logic to keep the codebase lean for the assessment. A service layer would increase reuse and testability but add boilerplate for this scope.
+- **Database-first seeding:** SQL schema + seed script favor transparency and align with Railway’s SQL console. Using an ORM (e.g., Prisma) could add migrations and model syncing at the cost of extra tooling.
+- **Client-driven validation:** Frontend performs minimal form validation; deeper validation resides server-side for trust. Additional schema validation (e.g., Zod/Joi) could further harden inputs.
+- **Settings stored as JSON:** This keeps user preferences flexible but sacrifices strong typing at the DB level. Specialized columns could enable richer queries but would require migrations for new fields.
+- **Limited observability:** Logging is minimal (morgan + console). Production deployments would typically integrate structured logging and monitoring, but this was deferred to keep focus on core functionality.
+
 ## Testing the User Flows
 
 ### Flow 1: Personal Robot Owner
