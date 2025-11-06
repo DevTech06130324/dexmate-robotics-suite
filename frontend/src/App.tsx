@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { AuthProvider, useAuthContext } from './contexts/AuthContext';
 import Layout from './components/Layout';
+import PageLoader from './components/PageLoader';
 import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/Login';
 import RegisterPage from './pages/Register';
@@ -13,7 +14,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactElement }> = ({ children }
   const { user, loading } = useAuthContext();
 
   if (loading) {
-    return <div className="page">Loading...</div>;
+    return <PageLoader />;
   }
 
   if (!user) {
